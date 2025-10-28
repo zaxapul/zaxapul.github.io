@@ -1,0 +1,208 @@
+<html>
+<head>
+
+
+<link rel="shortcut icon" href="CursorIco.png">
+<title>Кликер</title>
+ 
+  <body>
+    
+
+<h2 id="clcount" class = "cl"></h2>
+<button id="clBtn" class = "clbtn">Клик :3</button>
+
+<button id="theme-toggle" class="theme-btn">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Темная тема</span>
+    </button>
+<div class="upgrade-box">
+    <div class="upgrade-txt">Множитель Клика</div> 
+    
+    <!-- Xcounter-->
+    <div class="Xcontainer">
+        <div class="Xcounter">X</div>
+        <div class="Xcounter" id="multipleCounter">1</div>
+    </div>
+    <!--BuyBtn-->
+    <button class="buy-btn" id="buy-cl-multiple">Купить</button>
+
+</div>
+
+  </body>
+</head>
+<style>
+  .cl{
+    text-align: center;
+    font-size: 35px;
+  }
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --btn-bg: #007bff;
+            --btn-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --btn-bg: #4da6ff;
+            --btn-text: #000000;
+        }
+        .upgrade-box{
+            height: 300px;
+            width: 550px ;
+            background-image: linear-gradient(to left, rgb(0, 225, 255), rgb(100, 128, 0)) ;
+            border: 5px solid rgb(87, 87, 87);
+            border-radius: 20px;
+            margin-left:auto ;
+
+
+        }
+        .Xcontainer{
+            display: flex;
+        }
+        .Xcounter{
+            color: rgb(73, 73, 73);
+            font-size: 35px;
+        }
+        .buy-btn{
+            background-color: rgb(7, 199, 33);
+            border-radius: 20px;
+            width: 110px;
+            height: 55px;
+            
+            
+            
+        }
+        .PriceContainer{
+            display: flex;
+        }
+        .PriceCounter{
+            color: rgb(73, 73, 73);
+            
+        }
+        .upgrade-txt{
+            color:rgb(46, 46, 46);
+            font-size:35px;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .clbtn{
+            width: 160px;
+            height: 70px;
+            font-size: 36px;
+            background-color: rgb(132, 0, 255);
+            border-radius: 20px;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 855px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+</style>
+</html>
+<script>
+
+    const button = document.getElementById('clBtn');
+    const counterDisplay = document.getElementById('clcount');
+    const clmultiple = document.getElementById('buy-cl-multiple');
+    const multipleCounter = document.getElementById('multipleCounter');
+
+
+    let notUpgradeRightNow = true
+    let maxMultipleLevelBeforUpPrice = 2;
+    let multiplePrice = 100;
+    let clLvl = 1;
+    let clicks = 100;
+
+    
+  document.getElementById("clcount").textContent = clicks
+  
+  button.addEventListener ("click", () => {
+  // Увеличиваем переменную на 1
+  clicks = clicks + clLvl;
+  // Обновляем текст на странице
+  counterDisplay.textContent = clicks; })
+    clmultiple.addEventListener ("click", () =>  {
+        if (clicks >= multiplePrice ) {
+            clicks = clicks - multiplePrice;
+            clLvl++ 
+            counterDisplay.textContent = clicks;
+            notUpgradeRightNow = true;
+            multipleCounter.textContent = clLvl;
+            
+                if (clLvl >= maxMultipleLevelBeforUpPrice); and (notUpgradeRightNow === true); {
+                    multiplePrice = multiplePrice + multiplePrice
+                    notUpgradeRightNow = false
+                    maxMultipleLevelBeforUpPrice = maxMultipleLevelBeforUpPrice + 2
+                }
+
+
+
+            }
+        })
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('.theme-icon');
+            const themeText = themeToggle.querySelector('.theme-text');
+            
+            // Загрузка темы
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                setDarkTheme();
+            } else {
+                setLightTheme();
+            }
+
+            // Обработчик клика
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                
+                if (currentTheme === 'dark') {
+                    setLightTheme();
+                } else {
+                    setDarkTheme();
+                }
+            });
+
+            function setDarkTheme() {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Светлая тема';
+                localStorage.setItem('theme', 'dark');
+            }
+
+            function setLightTheme() {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Темная тема';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+</script>
+

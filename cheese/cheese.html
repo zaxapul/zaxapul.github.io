@@ -1,0 +1,274 @@
+<html lang="ru">
+
+    <head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сыры</title>
+    <style>
+        /* Стили */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --btn-bg: #007bff;
+            --btn-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --btn-bg: #4da6ff;
+            --btn-text: #000000;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .nav-btn {
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .cheese{
+            display: flex;
+                justify-content: space-between ;
+            position: fixed;
+            top: 5px;
+            right: 900px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            gap: 8px;
+        }
+        .cheese-text{
+        position: fixed;
+            top: 5px;
+            right: 900px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            gap: 8px;
+        }
+        .parmezan_b {
+            x:200px;
+            y: 200px;
+        }
+        .p1 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            right: 1030px;
+            top: 169px;
+        }
+.p2 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            right: 1250px;
+            top: 169px;
+
+        }
+.fit-picture3 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+.fit-picture4 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+.fit-picture5 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+.fit-picture6 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+.fit-picture7 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+.fit-picture8 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+.fit-picture9 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+  
+        }
+
+.fit-picture10 {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+        }
+
+
+
+        .sort{
+            color: rgb(80, 80, 80);
+        }
+        .theme-btn {
+            position: fixed;
+            top: 855px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+    <h1 class="parmezan_b">Пармезан</h1>
+
+<body>
+<button class="nav-btn" onclick="goToPage('test.html')">
+        Главная
+    </button>
+<div>
+    <!-- картиночки -->
+    <img
+  class="cheese p1"
+  src="img/parmezan.jpeg"
+  alt="parmezan1" />
+
+  <img
+  class="cheese p2"
+  src="img/parmezan2.jpeg"
+  alt="parmezan2" />
+
+  <img
+  class="fit-picture3"
+  src="img/chedder.jpeg"
+  alt="chedder" />
+
+    <img
+  class="fit-picture4"
+  src="img/chedder2.jpg"
+  alt="chedder2" />
+
+    <img
+  class="fit-picture5"
+  src="img/kamamber.jpeg"
+  alt="kamamber" />
+
+    <img
+  class="fit-picture6"
+  src="img/brinza2.jpeg"
+  alt="brinza2" />
+
+    <img
+  class="fit-picture7"
+  src="img/kosichka.jpeg"
+  alt="kosichka" />
+  
+    <img
+  class="fit-picture8"
+  src="img/kamamber2.jpeg"
+  alt="kamamber2" />
+
+    <img
+  class="fit-picture9"
+  src="img/brinza.jpeg"
+  alt="brinza" />
+
+    <img
+  class="fit-picture10"
+  src="img/kosichka2.jpeg"
+  alt="kosichka2" />
+                        </div>
+    <button id="theme-toggle" class="theme-btn">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Темная тема</span>
+    </button>
+
+    <div class="cheese-text">
+        <h1>Виды сыра</h1>
+    </div>
+
+    <script>
+        // функция перехода на страницу 
+        
+        function goToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+            //смена темы 
+            document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('.theme-icon');
+            const themeText = themeToggle.querySelector('.theme-text');
+            
+            // Загрузка темы
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                setDarkTheme();
+            } else {
+                setLightTheme();
+            }
+
+            // Обработчик клика
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                
+                if (currentTheme === 'dark') {
+                    setLightTheme();
+                } else {
+                    setDarkTheme();
+                }
+            });
+
+            function setDarkTheme() {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Светлая тема';
+                localStorage.setItem('theme', 'dark');
+            }
+
+            function setLightTheme() {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Темная тема';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+    </body>
+</html>

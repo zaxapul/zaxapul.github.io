@@ -1,0 +1,170 @@
+
+
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nav-btn {
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .secondary {
+            background-color: #6c757d;
+        }
+        
+        .secondary:hover {
+            background-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <h1>Главная страница</h1>
+    <p>Нажмите кнопку для перехода на подстраницу</p>
+    
+    <button class="nav-btn" onclick="goToPage('cheese/cheese.html')">
+        сыр
+    </button>
+    
+    <button class="nav-btn" onclick="goToPage('clicker/contact.html')">
+        Перейти в Кликер
+    </button>
+    
+    <button class="nav-btn secondary" onclick="goToPageWithParams('profile.html', 'user=123')">
+        Профиль с параметрами
+    </button>
+
+    <script>
+        // Функция для перехода на другую страницу
+        function goToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+        
+        // Функция для перехода с параметрами
+        function goToPageWithParams(pageUrl, params) {
+            window.location.href = `${pageUrl}?${params}`;
+        }
+        
+        // Функция для перехода в новом окне
+        function openInNewTab(pageUrl) {
+            window.open(pageUrl, '_blank');
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смена темы с текстом</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --btn-bg: #007bff;
+            --btn-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --btn-bg: #4da6ff;
+            --btn-text: #000000;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 855px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-btn">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Темная тема</span>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('.theme-icon');
+            const themeText = themeToggle.querySelector('.theme-text');
+            
+            // Загрузка темы
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                setDarkTheme();
+            } else {
+                setLightTheme();
+            }
+
+            // Обработчик клика
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                
+                if (currentTheme === 'dark') {
+                    setLightTheme();
+                } else {
+                    setDarkTheme();
+                }
+            });
+
+            function setDarkTheme() {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Светлая тема';
+                localStorage.setItem('theme', 'dark');
+            }
+
+            function setLightTheme() {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Темная тема';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+    </body>
+</html>
