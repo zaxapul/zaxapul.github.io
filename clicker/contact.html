@@ -15,7 +15,6 @@
         <span class="theme-icon">🌙</span>
         <span class="theme-text">Темная тема</span>
     </button>
-        <div class="Version">0.0.2</div>
 <div class="upgrade-box">
     <div class="upgrade-txt">Множитель Клика</div> 
     
@@ -25,12 +24,7 @@
         <div class="Xcounter" id="multipleCounter">1</div>
     </div>
     <!--BuyBtn-->
-        <button class="buy-btn" id="buy-cl-multiple">Купить</button>
-        <button class="buy-btn" id="buy-cl-multiple-x10">Купить X10 </button>
-    <div class="PriceCounter">
-        <div>Цена: </div>
-        <div class="PriceCounter" id="multiplePriceCounter"></div>
-    </div>
+    <button class="buy-btn" id="buy-cl-multiple">Купить</button>
 
 </div>
 
@@ -41,43 +35,25 @@
     text-align: center;
     font-size: 35px;
   }
-        
-        .Version{
-            position: fixed;
-            top: 855px;;
-            padding: 10px 20px;
-            color: var(--ver-text);
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
         :root {
-            --text-color-2: #424242;
             --bg-color: #ffffff;
             --text-color: #333333;
             --btn-bg: #007bff;
             --btn-text: #ffffff;
-            --ver-text: rgb(114, 114, 114) ;
-            --border-color: rgb(20, 20, 20);
         }
 
         [data-theme="dark"] {
-            --text-color-2:#999999;
             --bg-color: #1a1a1a;
             --text-color: #ffffff;
             --btn-bg: #4da6ff;
             --btn-text: #000000;
-            --ver-text: rgb(48, 48, 48);
-            --border-color: rgb(87, 87, 87);
         }
         .upgrade-box{
             height: 300px;
             width: 550px ;
             background-image: linear-gradient(to left, rgb(0, 225, 255), rgb(100, 128, 0)) ;
-            border: 7px solid var(--border-color);
-            border-radius: 25px;
+            border: 5px solid rgb(87, 87, 87);
+            border-radius: 20px;
             margin-left:auto ;
 
 
@@ -86,14 +62,12 @@
             display: flex;
         }
         .Xcounter{
-            color: var(--text-color-2);
+            color: rgb(73, 73, 73);
             font-size: 35px;
-
         }
         .buy-btn{
             background-color: rgb(7, 199, 33);
             border-radius: 20px;
-            border: 2.5px solid var(--border-color) ;
             width: 110px;
             height: 55px;
             
@@ -104,13 +78,11 @@
             display: flex;
         }
         .PriceCounter{
-            color: var(--text-color-2);
-            display: flex;
-            font-size: 35px;
+            color: rgb(73, 73, 73);
             
         }
         .upgrade-txt{
-            color:var(--text-color-2);
+            color:rgb(46, 46, 46);
             font-size:35px;
         }
         
@@ -126,7 +98,6 @@
             height: 70px;
             font-size: 36px;
             background-color: rgb(132, 0, 255);
-            border: 2.5px solid var(--border-color) ;
             border-radius: 20px;
         }
 
@@ -157,25 +128,15 @@
     const counterDisplay = document.getElementById('clcount');
     const clmultiple = document.getElementById('buy-cl-multiple');
     const multipleCounter = document.getElementById('multipleCounter');
-    const multiplePriceCounter = document.getElementById('multiplePriceCounter')
-    const clmultipleX10 = document.getElementById('buy-cl-multiple-x10')
-
-    localStorage.clLvlLS =  clLvl ;
-    localStorage.multiplePriceLS = multiplePrice ; 
 
 
-
+    let notUpgradeRightNow = true
+    let maxMultipleLevelBeforUpPrice = 2;
     let multiplePrice = 100;
     let clLvl = 1;
-    let clicks = 1100;
+    let clicks = 100;
 
-
-
-    multiplePriceCounter.textContent = multiplePrice
-    multipleCounter.textContent = clLvl
-
-    counterDisplay.textContent = clicks;
-
+    
   document.getElementById("clcount").textContent = clicks
   
   button.addEventListener ("click", () => {
@@ -188,17 +149,20 @@
             clicks = clicks - multiplePrice;
             clLvl++ 
             counterDisplay.textContent = clicks;
+            notUpgradeRightNow = true;
             multipleCounter.textContent = clLvl;
+            
+                if (clLvl >= maxMultipleLevelBeforUpPrice); and (notUpgradeRightNow === true); {
+                    multiplePrice = multiplePrice + multiplePrice
+                    notUpgradeRightNow = false
+                    maxMultipleLevelBeforUpPrice = maxMultipleLevelBeforUpPrice + 2
+                }
+
+
+
             }
         })
-        clmultipleX10.addEventListener ("click", () =>  {
-        if (clicks >= (multiplePrice*10) ) {
-            clicks = clicks - multiplePrice*10;
-            clLvl = clLvl+10; 
-            counterDisplay.textContent = clicks;
-            multipleCounter.textContent = clLvl;
-            }
-        })
+
 
   document.addEventListener('DOMContentLoaded', function() {
             const themeToggle = document.getElementById('theme-toggle');
