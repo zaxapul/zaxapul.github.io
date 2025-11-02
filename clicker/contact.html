@@ -23,8 +23,13 @@
         <div class="Xcounter">X</div>
         <div class="Xcounter" id="multipleCounter">1</div>
     </div>
+ <div>
+      <div>Цена:</div>
+      <div class="PriceCounter" id="multiplePriceCounter"></div>
+ </div>
     <!--BuyBtn-->
     <button class="buy-btn" id="buy-cl-multiple">Купить</button>
+    <button class="buy-btn" id="buy-cl-multiple-x10">Купить X10</button>
 
 </div>
 
@@ -35,6 +40,7 @@
     text-align: center;
     font-size: 35px;
   }
+        
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
@@ -79,6 +85,7 @@
         }
         .PriceCounter{
             color: rgb(73, 73, 73);
+            display: flex;
             
         }
         .upgrade-txt{
@@ -128,14 +135,16 @@
     const counterDisplay = document.getElementById('clcount');
     const clmultiple = document.getElementById('buy-cl-multiple');
     const multipleCounter = document.getElementById('multipleCounter');
+    const clmultipleX10 = document.getElementById('buy-cl-multiple-x10');
+    const multiplePriceCounter = document.getElementById('multiplePriceCounter');
 
-
-    let notUpgradeRightNow = true
-    let maxMultipleLevelBeforUpPrice = 2;
+    
+  
     let multiplePrice = 100;
     let clLvl = 1;
-    let clicks = 100;
+    let clicks = 1100;
 
+    multiplePriceCounter.textContent = multiplePrice;
     
   document.getElementById("clcount").textContent = clicks
   
@@ -147,16 +156,26 @@
     clmultiple.addEventListener ("click", () =>  {
         if (clicks >= multiplePrice ) {
             clicks = clicks - multiplePrice;
-            clLvl++ 
+            clLvl = clLvl + 1
             counterDisplay.textContent = clicks;
-            notUpgradeRightNow = true;
+            
             multipleCounter.textContent = clLvl;
             
-                if (clLvl >= maxMultipleLevelBeforUpPrice); and (notUpgradeRightNow === true); {
-                    multiplePrice = multiplePrice + multiplePrice
-                    notUpgradeRightNow = false
-                    maxMultipleLevelBeforUpPrice = maxMultipleLevelBeforUpPrice + 2
-                }
+                
+
+
+
+            }
+        })
+        clmultipleX10.addEventListener ("click", () =>  {
+        if (clicks >= multiplePrice*10 ) {
+            clicks = clicks - multiplePrice*10;
+            clLvl = clLvl + 10
+            counterDisplay.textContent = clicks;
+            
+            multipleCounter.textContent = clLvl;
+            
+                
 
 
 
